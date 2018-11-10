@@ -2,31 +2,33 @@ package info.beta3z.tdd;
 
 public class Money {
     protected int amount;
+    protected String currency;
+
+    public Money(int amount, String currency){
+        this.amount = amount;
+        this.currency = currency;
+    }
 
     public boolean equals(Object object){
         Money money = (Money) object;
 
         return amount == money.amount
-                && getClass().equals(money.getClass());
+                && currency() == money.currency();
     }
 
     public static Money dollar(int amount){
-        return new Dollar(amount);
+        return new Money(amount, "USD");
     }
 
-    public static Franc franc(int amount){
-        return new Franc(amount);
+    public static Money franc(int amount){
+        return new Money(amount, "CHF");
     }
 
     public Money times(int multiplier){
-        Money money = null;
+        return new Money(amount * multiplier, currency());
+    }
 
-        try {
-            money = getClass().getConstructor(int.class).newInstance(this.amount * multiplier);
-        } catch(Throwable e) {
-            System.out.println(e.getMessage());
-        }
-
-        return money;
+    public String currency(){
+        return currency;
     }
 }
