@@ -1,3 +1,6 @@
+package info.beta3z.tdd;
+
+import info.beta3z.tdd.Franc;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
