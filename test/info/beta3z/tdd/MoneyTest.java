@@ -2,13 +2,11 @@ package info.beta3z.tdd;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class MoneyTest {
+class MoneyTest {
     @Test
-    public void testMultiplication(){
+    void testMultiplication(){
         Money five = Money.franc(5);
 
         assertEquals(Money.franc(10), five.times(2));
@@ -16,18 +14,18 @@ public class MoneyTest {
     }
 
     @Test
-    public void testEquality(){
-        assertTrue(Money.dollar(5).equals(Money.dollar(5)));
-        assertFalse(Money.dollar(5).equals(Money.dollar(6)));
+    void testEquality(){
+        assertEquals(Money.dollar(5), Money.dollar(5));
+        assertNotEquals(Money.dollar(5), Money.dollar(6));
 
-        assertTrue(Money.franc(5).equals(Money.franc(5)));
-        assertFalse(Money.franc(5).equals(Money.franc(6)));
+        assertEquals(Money.franc(5), Money.franc(5));
+        assertNotEquals(Money.franc(5), Money.franc(6));
 
-        assertFalse(Money.franc(5).equals(Money.dollar(5)));
+        assertNotEquals(Money.franc(5), Money.dollar(5));
     }
 
     @Test
-    public void testCurrency(){
+    void testCurrency(){
         assertEquals("USD", Money.dollar(1).currency());
         assertEquals("CHF", Money.franc(1).currency());
     }
